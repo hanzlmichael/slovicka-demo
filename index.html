@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slovíčka – Local Storage Trainer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,700;8..144,800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app">
+    <!-- Mobile drawer overlay -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="drawer" id="drawer">
+      <div class="drawer-header">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">📘</div>
+          <div>
+            <h1>Slovíčka</h1>
+            <p>Local Storage Active</p>
+          </div>
+        </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Zavřít menu">✕</button>
+      </div>
+
+      <div class="drawer-section">
+        <h3>Dataset</h3>
+        <p class="muted" id="drawerDatasetName">—</p>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Pokrok</span>
+            <strong id="drawerProgressText">0 / 0</strong>
+          </div>
+          <div class="progress">
+            <div id="drawerProgressBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-section collapsible is-collapsed" id="drawerDataSection">
+        <button class="drawer-toggle" id="dataToggle" type="button" aria-expanded="false">
+          <span>Data</span>
+          <span class="drawer-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="drawer-content" id="dataContent">
+          <p class="muted">Data jsou uložená jen v tomto prohlížeči.</p>
+          <div class="actions stack">
+            <button id="exportBtn2" class="btn ghost">Export JSON</button>
+            <label class="btn ghost file-label" for="importFile2">Import JSON</label>
+            <input id="importFile2" type="file" accept="application/json" hidden />
+            <button id="clearBtn2" class="btn danger">Smazat lokální data</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-section collapsible is-collapsed" id="drawerHistorySection">
+        <button class="drawer-toggle" id="historyToggle" type="button" aria-expanded="false">
+          <span>Historie</span>
+          <span class="drawer-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="drawer-content" id="historyContent">
+          <div class="history-head">
+            <h3>Historie</h3>
+          </div>
+          <ul id="drawerHistoryList" class="history-list"></ul>
+          <button id="drawerViewMoreBtn" class="btn ghost" style="margin-top:10px;width:100%">Zobrazit další</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">📘</div>
+        <div>
+          <h1>Slovíčka</h1>
+          <p>Local Storage Active</p>
+        </div>
+      </div>
+
+      <div class="panel compact">
+        <h3>Data</h3>
+        <p>Data jsou uložená jen v tomto prohlížeči.</p>
+        <div class="actions stack">
+          <button id="exportBtn" class="btn ghost">Export JSON</button>
+          <label class="btn ghost file-label" for="importFile">Import JSON</label>
+          <input id="importFile" type="file" accept="application/json" hidden />
+          <button id="clearBtn" class="btn danger">Smazat lokální data</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">☰</button>
+        <div>
+          <p class="muted">Dataset</p>
+          <h2 id="datasetName">B2/C1 test (100 slov)</h2>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Pokrok</span>
+            <strong id="progressText">0 / 0</strong>
+          </div>
+          <div class="progress">
+            <div id="progressBar"></div>
+          </div>
+        </div>
+      </header>
+
+      <section class="card" id="wordCard">
+        <div class="card-head">
+          <span class="tag" id="wordTag">ADJECTIVE • LEVEL C1</span>
+          <span class="index" id="wordIndex">#0001</span>
+        </div>
+
+        <h3 id="wordText">Načítám...</h3>
+        <p class="phonetic" id="phonetic">/…/</p>
+
+        <button id="revealBtn" class="translation-box hidden-translation">
+          Klikni pro zobrazení překladu
+          <strong id="translation">—</strong>
+        </button>
+
+        <div class="definition-box">
+          <h4>Definition</h4>
+          <p id="definition">—</p>
+          <hr />
+          <h4>Example</h4>
+          <p id="example" class="italic">—</p>
+        </div>
+
+        <div class="card-actions">
+          <button id="againBtn" class="btn ghost">Znovu</button>
+          <button id="nextBtn" class="btn primary">Další nové slovo</button>
+        </div>
+      </section>
+    </main>
+
+    <aside class="history">
+      <div class="history-head">
+        <h3>Historie</h3>
+      </div>
+      <ul id="historyList" class="history-list"></ul>
+      <button id="viewMoreBtn" class="btn ghost" style="margin-top:10px;width:100%">Zobrazit další</button>
+    </aside>
+  </div>
+
+  <template id="historyItemTpl">
+    <li class="history-item">
+      <div>
+        <strong class="h-word"></strong>
+        <p class="h-meta"></p>
+      </div>
+      <span class="pill">Seen</span>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
