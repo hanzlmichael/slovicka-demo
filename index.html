@@ -32,14 +32,29 @@
       <div class="drawer-section">
         <h3>Dataset</h3>
         <p class="muted" id="drawerDatasetName">—</p>
-        <div class="progress-wrap">
-          <div class="progress-label">
-            <span>Pokrok</span>
-            <strong id="drawerProgressText">0 / 0</strong>
-          </div>
-          <div class="progress">
-            <div id="drawerProgressBar"></div>
-          </div>
+      </div>
+
+      <div class="drawer-section collapsible is-collapsed" id="drawerFavSection">
+        <button class="drawer-toggle" id="favToggle" type="button" aria-expanded="false">
+          <span>Oblíbené⭐<span class="fav-count" id="drawerFavCount">0</span></span>
+          <span class="drawer-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="drawer-content">
+          <ul id="drawerFavList" class="history-list"></ul>
+          <p id="drawerFavEmpty" class="muted fav-empty">Žádné oblíbené.</p>
+          <button id="drawerPracticeFavBtn" class="btn primary fav-action-btn">Procvičit oblíbené</button>
+          <button id="drawerExitFavModeBtn" class="btn ghost fav-action-btn" style="display:none">← Zpět</button>
+        </div>
+      </div>
+
+      <div class="drawer-section collapsible is-collapsed" id="drawerCatSection">
+        <button class="drawer-toggle" id="catToggle" type="button" aria-expanded="false">
+          <span>Kategorie 📁</span>
+          <span class="drawer-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="drawer-content">
+          <div id="drawerCategoriesList"></div>
+          <p id="drawerCategoriesEmpty" class="muted cat-empty">Žádné kategorie.</p>
         </div>
       </div>
 
@@ -93,6 +108,24 @@
           <button id="clearBtn" class="btn danger">Smazat lokální data</button>
         </div>
       </div>
+
+      <div class="panel compact fav-panel">
+        <div class="fav-head">
+          <h3>♥ Oblíbené <span class="fav-count" id="favCount">0</span></h3>
+        </div>
+        <ul id="favList" class="history-list"></ul>
+        <p id="favEmpty" class="muted fav-empty">Žádné oblíbené. Klikni ♡ na kartě.</p>
+        <button id="practiceFavBtn" class="btn primary fav-action-btn">Procvičit oblíbené</button>
+        <button id="exitFavModeBtn" class="btn ghost fav-action-btn" style="display:none">← Zpět na nová slova</button>
+      </div>
+
+      <div class="panel compact cat-panel" id="categoriesPanel">
+        <div class="cat-head">
+          <h3>📁 Kategorie</h3>
+        </div>
+        <div id="categoriesList"></div>
+        <p id="categoriesEmpty" class="muted cat-empty">Žádné kategorie.</p>
+      </div>
     </aside>
 
     <main class="main">
@@ -102,21 +135,27 @@
           <p class="muted">Dataset</p>
           <h2 id="datasetName">B2/C1 test (100 slov)</h2>
         </div>
-        <div class="progress-wrap">
-          <div class="progress-label">
-            <span>Pokrok</span>
-            <strong id="progressText">0 / 0</strong>
-          </div>
-          <div class="progress">
-            <div id="progressBar"></div>
-          </div>
-        </div>
       </header>
+
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Hledat slovíčko..." autocomplete="off" />
+        <ul class="search-results" id="searchResults"></ul>
+      </div>
 
       <section class="card" id="wordCard">
         <div class="card-head">
           <span class="tag" id="wordTag">ADJECTIVE • LEVEL C1</span>
-          <span class="index" id="wordIndex">#0001</span>
+          <div class="card-head-right">
+            <button class="fav-btn" id="favBtn" aria-label="Oblíbené" title="Přidat do oblíbených">♡</button>
+            <button class="cat-btn" id="catBtn" aria-label="Kategorie" title="Přidat do kategorie">+</button>
+          </div>
         </div>
 
         <h3 id="wordText">Načítám...</h3>
@@ -137,7 +176,7 @@
 
         <div class="card-actions">
           <button id="againBtn" class="btn ghost">Znovu</button>
-          <button id="nextBtn" class="btn primary">Další nové slovo</button>
+          <button id="nextBtn" class="btn primary">Další</button>
         </div>
       </section>
     </main>
@@ -160,6 +199,26 @@
       <span class="pill">Seen</span>
     </li>
   </template>
+
+  <!-- Category modal -->
+  <div class="modal-overlay" id="catModalOverlay">
+    <div class="modal" id="catModal">
+      <div class="modal-header">
+        <h3>Kategorie</h3>
+        <button class="modal-close" id="catModalClose" aria-label="Zavřít">✕</button>
+      </div>
+      <div class="modal-body" id="catModalBody">
+        <ul id="catModalList" class="cat-modal-list"></ul>
+        <p id="catModalEmpty" class="muted cat-empty">Žádné kategorie. Vytvoř první!</p>
+      </div>
+      <div class="modal-footer">
+        <div class="cat-create-row">
+          <input type="text" id="catNewName" placeholder="Název nové kategorie..." class="cat-input" />
+          <button id="catCreateBtn" class="btn primary cat-create-btn">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
