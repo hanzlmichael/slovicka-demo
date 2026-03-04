@@ -22,7 +22,7 @@
         <div class="brand">
           <div class="logo" aria-hidden="true">📘</div>
           <div>
-            <h1>Slovíčka</h1>
+            <h1>Words</h1>
             <p>Local Storage Active</p>
           </div>
         </div>
@@ -36,7 +36,7 @@
 
       <div class="drawer-section collapsible is-collapsed" id="drawerFavSection">
         <button class="drawer-toggle" id="favToggle" type="button" aria-expanded="false">
-          <span>Oblíbené⭐<span class="fav-count" id="drawerFavCount">0</span></span>
+          <span>Oblíbené<span class="fav-count" id="drawerFavCount">0</span></span>
           <span class="drawer-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="drawer-content">
@@ -49,7 +49,7 @@
 
       <div class="drawer-section collapsible is-collapsed" id="drawerCatSection">
         <button class="drawer-toggle" id="catToggle" type="button" aria-expanded="false">
-          <span>Kategorie 📁</span>
+          <span>Kategorie</span>
           <span class="drawer-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="drawer-content">
@@ -66,10 +66,10 @@
         <div class="drawer-content" id="dataContent">
           <p class="muted">Data jsou uložená jen v tomto prohlížeči.</p>
           <div class="actions stack">
-            <button id="exportBtn2" class="btn ghost">Export JSON</button>
-            <label class="btn ghost file-label" for="importFile2">Import JSON</label>
+            <button id="exportBtn2" class="btn ghost">Export data</button>
+            <label class="btn ghost file-label" for="importFile2">Import data</label>
             <input id="importFile2" type="file" accept="application/json" hidden />
-            <button id="clearBtn2" class="btn danger">Smazat lokální data</button>
+            <button id="clearBtn2" class="btn danger">Smazat data</button>
           </div>
         </div>
       </div>
@@ -93,25 +93,14 @@
       <div class="brand">
         <div class="logo" aria-hidden="true">📘</div>
         <div>
-          <h1>Slovíčka</h1>
+          <h1>Words</h1>
           <p>Local Storage Active</p>
-        </div>
-      </div>
-
-      <div class="panel compact">
-        <h3>Data</h3>
-        <p>Data jsou uložená jen v tomto prohlížeči.</p>
-        <div class="actions stack">
-          <button id="exportBtn" class="btn ghost">Export JSON</button>
-          <label class="btn ghost file-label" for="importFile">Import JSON</label>
-          <input id="importFile" type="file" accept="application/json" hidden />
-          <button id="clearBtn" class="btn danger">Smazat lokální data</button>
         </div>
       </div>
 
       <div class="panel compact fav-panel">
         <div class="fav-head">
-          <h3>♥ Oblíbené <span class="fav-count" id="favCount">0</span></h3>
+          <h3>Oblíbené <span class="fav-count" id="favCount">0</span></h3>
         </div>
         <ul id="favList" class="history-list"></ul>
         <p id="favEmpty" class="muted fav-empty">Žádné oblíbené. Klikni ♡ na kartě.</p>
@@ -121,10 +110,21 @@
 
       <div class="panel compact cat-panel" id="categoriesPanel">
         <div class="cat-head">
-          <h3>📁 Kategorie</h3>
+          <h3>Kategorie</h3>
         </div>
         <div id="categoriesList"></div>
         <p id="categoriesEmpty" class="muted cat-empty">Žádné kategorie.</p>
+      </div>
+
+      <div class="panel compact">
+        <h3>Data</h3>
+        <p>Data jsou uložená jen v tomto prohlížeči.</p>
+        <div class="actions stack">
+          <button id="exportBtn" class="btn ghost">Export data</button>
+          <label class="btn ghost file-label" for="importFile">Import data</label>
+          <input id="importFile" type="file" accept="application/json" hidden />
+          <button id="clearBtn" class="btn danger">Smazat data</button>
+        </div>
       </div>
     </aside>
 
@@ -145,13 +145,13 @@
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
         </span>
-        <input type="text" class="search-input" id="searchInput" placeholder="Hledat slovíčko..." autocomplete="off" />
+        <input type="text" class="search-input" id="searchInput" placeholder="Hledat slovo..." autocomplete="off" />
         <ul class="search-results" id="searchResults"></ul>
       </div>
 
       <section class="card" id="wordCard">
         <div class="card-head">
-          <span class="tag" id="wordTag">ADJECTIVE • LEVEL C1</span>
+          <span class="tag" id="wordTag">ADJECTIVE • C1</span>
           <div class="card-head-right">
             <button class="fav-btn" id="favBtn" aria-label="Oblíbené" title="Přidat do oblíbených">♡</button>
             <button class="cat-btn" id="catBtn" aria-label="Kategorie" title="Přidat do kategorie">+</button>

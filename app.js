@@ -176,7 +176,7 @@ function renderWord(index) {
   registerSeen(index);
   saveState();
 
-  el.wordTag.textContent = `${word.pos.toUpperCase()} • LEVEL ${word.level}`;
+  el.wordTag.textContent = `${word.pos.toUpperCase()} • ${word.level}`;
   //el.wordIndex.textContent = `#${String(word.id).padStart(4, "0")}`;
   el.wordText.textContent = word.word;
   el.phonetic.textContent = word.phonetic || "—";
@@ -230,7 +230,7 @@ function renderHistoryList(container, items) {
     historyItem.tabIndex = 0;
     historyItem.querySelector(".h-word").textContent = item.word;
     historyItem.querySelector(".h-meta").textContent =
-      `idx: ${item.index} • ${item.level} • ${relativeTime(item.time)}`;
+      `${item.level} • ${relativeTime(item.time)}`;
 
     const openFromHistory = () => {
       renderWord(item.index);
@@ -326,7 +326,7 @@ function renderFavoritesList(container, emptyEl, items) {
     li.tabIndex = 0;
     li.querySelector(".h-word").textContent = word.word;
     li.querySelector(".h-meta").textContent =
-      `#${word.id} • ${word.level} • ${word.pos}`;
+      `${word.level} • ${word.pos}`;
     li.querySelector(".pill").textContent = "♥";
     li.querySelector(".pill").style.background = "#ffe0e0";
     li.querySelector(".pill").style.color = "#e25555";
@@ -623,7 +623,7 @@ function renderCategoriesList(container, emptyEl) {
 
     const head = document.createElement("div");
     head.className = "cat-section-head";
-    head.innerHTML = `<span>📁 ${escapeHtml(cat.name)}</span><span class="cat-section-count">${cat.words.length}</span>`;
+    head.innerHTML = `<span>${escapeHtml(cat.name)}</span><span class="cat-section-count">${cat.words.length}</span>`;
 
     const list = document.createElement("ul");
     list.className = "history-list";
@@ -643,7 +643,7 @@ function renderCategoriesList(container, emptyEl) {
       li.tabIndex = 0;
       li.querySelector(".h-word").textContent = word.word;
       li.querySelector(".h-meta").textContent =
-        `#${word.id} · ${word.level} · ${word.pos}`;
+        `${word.level} · ${word.pos}`;
       li.querySelector(".pill").textContent = "📁";
       li.querySelector(".pill").style.background = "#e8effd";
       li.querySelector(".pill").style.color = "#1f5fd1";

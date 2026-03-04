@@ -330,8 +330,8 @@ h2 {
 }
 
 .btn.danger {
-  background: #fde8ea;
-  color: var(--danger);
+  background: #ff828f;
+  color: var(--panel);
 }
 
 .stack {
@@ -807,6 +807,7 @@ h2 {
 /* ── Category panels ── */
 .cat-panel {
   margin-top: 14px;
+  margin-bottom: 14px;
 }
 
 .cat-head {
